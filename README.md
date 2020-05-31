@@ -1,7 +1,12 @@
 # BDO-Enhancement-Simulator
 Black Desert Online armor/weapon enhancement simulator.
 
-Allows you to select enhancement type (TRI to PEN, +14 to +15, or Blackstar weapon).
-Will automatically build failstacks starting from the initial stack.
+Select the enhancement type (TRI to PEN items / +14 gear for stacking / TRI to PEN Blackstar) and number of tries.
+
+Will automatically build failstacks starting from your initial stack.
+
 Can toggle Cron Stone use.
-Indicates recursive chances of success after a number of tries.
+
+Indicates the final recursive chance of success.
+
+The program can be edited to add other levels (+8 to DUO).
