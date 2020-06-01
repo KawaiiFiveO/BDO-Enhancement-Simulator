@@ -115,6 +115,7 @@ void runSim() {
     int success = 0;
     double plus = 0;
     double temp = start;
+    int cronsave = multiplier;
 
     if (crons == "Yes") {
         multiplier = 0;
@@ -142,7 +143,7 @@ void runSim() {
         temp = temp - (plus * multiplier);
         failstack = failstack + multiplier;
     }
-
+    multiplier = cronsave;
     chance = chance - (plus * failstack);
     recursive = (1 - recursive) * 100;
     chance = (1 - chance) * 100;
