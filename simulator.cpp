@@ -25,7 +25,7 @@ int main() {
     while (stop == 0) {
 	    system("CLS");
 		int choice;
-		cout << "*** Black Desert Online Enhancement Simulator v2.1 by Kat ***\n\n";
+		cout << "*** Black Desert Online Enhancement Simulator v2.2 by Kat ***\n\n";
 		cout << "--------Status--------\nFailstacks: " << failstack << "\nEnhancement type: " << translate << "\nUsing Cron Stones: " << crons << "\nNumber of attempts: " << times << "\n----------------------\n\n";
 		cout << "What would you like to do?\n1: Set number of failstacks\n2: Set enhancement type\n3: Change Cron Stone setting\n4: Set number of attempts\n5: Start simulation\n6: Exit\n\nSelect: ";
 		cin >> choice;
@@ -59,7 +59,7 @@ void setFS() {
 void setType() {
 	system("CLS");
 	int type = 0;
-	cout << "Enhancement Type\n\n1: TRI\n2: TET\n3: PEN\n4: +15\n5: TRI Blackstar\n6: TET Blackstar\n7: PEN Blackstar\n8: DUO Accessory\n9: TRI Accessory\n10: TET Accessory\n11: PEN Accessory\nSelect: ";
+	cout << "Enhancement Type\n\n1: TRI\n2: TET\n3: PEN\n4: +15\n5: TRI Blackstar\n6: TET Blackstar\n7: PEN Blackstar\n8: DUO Accessory\n9: TRI Accessory\n10: TET Accessory\n11: PEN Accessory\n\nSelect: ";
     cin >> type;
         if (type == 1) {
 			translate = "TRI";
@@ -156,9 +156,11 @@ void runSim() {
 
         plus = start / 10;
         double first = start + (failstack * plus);
+		if (first > 90)
+			first = 90;
         temp = 1 - (start / 100);
         plus = plus / 100;
-        double chance = temp;
+        double chance = 0;
         temp = temp - (failstack * plus);
         double recursive = 1;
 
@@ -184,7 +186,9 @@ void runSim() {
             failstack = failstack + multiplier;
         }
         multiplier = cronsave;
-        chance = chance - (plus * failstack);
+        chance = temp;
+		if (chance < .1)
+			chance = .1;
         recursive = (1 - recursive) * 100;
         chance = (1 - chance) * 100;
         if (translate == "+15" && crons == "Yes")
@@ -213,9 +217,11 @@ void runSimAcc() {
 
         plus = start / 10;
         double first = start + (failstack * plus);
+		if (first > 90)
+			first = 90;
         temp = 1 - (start / 100);
         plus = plus / 100;
-        double chance = temp;
+        double chance = 0;
         temp = temp - (failstack * plus);
         double recursive = 1;
 
@@ -250,7 +256,9 @@ void runSimAcc() {
             failstack = failstack + multiplier;
         }
         multiplier = cronsave;
-        chance = chance - (plus * failstack);
+        chance = temp;
+		if (chance < .1)
+			chance = .1;
         recursive = (1 - recursive) * 100;
         chance = (1 - chance) * 100;
         cout << "\nYou succeeded " << success << " time(s) out of " << times << ".\n";
